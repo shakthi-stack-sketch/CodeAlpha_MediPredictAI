@@ -1,0 +1,23 @@
+{
+  "model_name": "Random Forest",
+  "accuracy": 0.8333,
+  "features": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "target": "target",
+  "dataset": "UCI Heart Disease (Cleveland)",
+  "records": 297,
+  "classification_report": "              precision    recall  f1-score   support\n\n           0       0.82      0.88      0.85        32\n           1       0.85      0.79      0.81        28\n\n    accuracy                           0.83        60\n   macro avg       0.83      0.83      0.83        60\nweighted avg       0.83      0.83      0.83        60\n"
+}

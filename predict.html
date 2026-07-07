@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction - MediPredict AI{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Disease Risk Prediction</h1>
+        <p>Enter patient medical details below to assess heart disease risk.</p>
+    </div>
+</section>
+
+<section class="predict-section">
+    <div class="container">
+        <div class="predict-layout">
+            <form id="predictForm" class="predict-form">
+                <div class="form-grid">
+                    {% for field in fields %}
+                    <div class="form-group">
+                        <label for="{{ field.name }}">{{ field.label }}</label>
+                        {% if field.type == 'select' %}
+                        <select id="{{ field.name }}" name="{{ field.name }}" required>
+                            <option value="">Select...</option>
+                            {% for option in field.options %}
+                            <option value="{{ option.value }}">{{ option.label }}</option>
+                            {% endfor %}
+                        </select>
+                        {% else %}
+                        <input
+                            type="{{ field.type }}"
+                            id="{{ field.name }}"
+                            name="{{ field.name }}"
+                            {% if field.min is defined %}min="{{ field.min }}"{% endif %}
+                            {% if field.max is defined %}max="{{ field.max }}"{% endif %}
+                            {% if field.step is defined %}step="{{ field.step }}"{% endif %}
+                            placeholder="{{ field.placeholder | default('') }}"
+                            required
+                        >
+                        {% endif %}
+                        <span class="field-help">{{ field.help }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="predictBtn">
+                        <span class="btn-text">Predict</span>
+                        <span class="btn-loader" hidden>
+                            <span class="spinner"></span> Analyzing...
+                        </span>
+                    </button>
+                    <button type="reset" class="btn btn-secondary">Clear Form</button>
+                </div>
+            </form>
+
+            <div class="result-panel" id="resultPanel" hidden>
+                <div class="result-header">
+                    <h2>Prediction Result</h2>
+                </div>
+                <div class="result-body">
+                    <div class="result-risk" id="resultRisk">
+                        <span class="result-label">Disease Risk</span>
+                        <span class="result-value" id="riskValue">--</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-header">
+                            <span>Confidence Score</span>
+                            <span id="confidenceValue">0%</span>
+                        </div>
+                        <div class="confidence-track">
+                            <div class="confidence-fill" id="confidenceFill"></div>
+                        </div>
+                    </div>
+                    <div class="result-recommendation">
+                        <h3>Recommendation</h3>
+                        <p id="recommendationText"></p>
+                    </div>
+                    <div class="result-disclaimer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <p id="disclaimerText"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-panel" id="errorPanel" hidden>
+                <p id="errorText"></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('predictForm').addEventListener('submit', handlePrediction);
+</script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Home - MediPredict AI{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <span class="badge">Healthcare ML Platform</span>
+            <h1>MediPredict AI</h1>
+            <p class="tagline">AI-Powered Disease Risk Prediction</p>
+            <p class="hero-description">
+                Assess heart disease risk using patient medical data and machine learning.
+                Enter clinical measurements and receive an instant risk assessment with confidence scoring.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('predict_page') }}" class="btn btn-primary">Start Prediction</a>
+                <a href="{{ url_for('about') }}" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="pulse-ring"></div>
+                <div class="hero-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <p class="hero-card-label">Heart Disease Risk Analysis</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="container">
+        <h2 class="section-title">Features</h2>
+        <p class="section-subtitle">A simple, reliable tool for educational disease risk assessment</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon feature-icon-blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                </div>
+                <h3>Clinical Data Input</h3>
+                <p>Enter standard medical measurements including age, blood pressure, cholesterol, heart rate, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon feature-icon-teal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                    </svg>
+                </div>
+                <h3>ML Classification</h3>
+                <p>Powered by a trained Random Forest model on the UCI Heart Disease dataset for reliable predictions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon feature-icon-green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <h3>Instant Results</h3>
+                <p>Get disease risk prediction (Yes/No), confidence score, and personalized health recommendations instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon feature-icon-purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </div>
+                <h3>Privacy Focused</h3>
+                <p>All predictions run locally on your machine. No patient data is stored or sent to external servers.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-content">
+        <h2>Ready to assess heart disease risk?</h2>
+        <p>Enter patient medical details and get an AI-powered risk assessment in seconds.</p>
+        <a href="{{ url_for('predict_page') }}" class="btn btn-primary btn-lg">Start Prediction</a>
+    </div>
+</section>
+{% endblock %}
